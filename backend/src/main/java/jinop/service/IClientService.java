@@ -15,11 +15,11 @@ public interface IClientService {
 
     int queryClient(Map<String, Object> map);
 
-    void addClient(Client client);
+    void addClient(Map<String, Object> map);
 
     void deleteClient(Integer id);
 
-    void editClient(Client client);
+    void editClient(Map<String, Object> map);
 
     Map<String, Object> showClient(Map<String, Object> map);
 

@@ -1,6 +1,7 @@
 package jinop.model;
 
 import jinop.common.DateUtil;
+import jinop.common.IDUtil;
 import java.io.Serializable;
 
 /**
@@ -10,8 +11,10 @@ import java.io.Serializable;
 
 public class ResponseBody<T> implements Serializable {
     //时间
-    private String date= DateUtil.getCurrentDateStr("yyyy-MM-dd HH:mm:ss");
-    //状态码 默认200响应成功
+    private String date = DateUtil.getCurrentDateStr("yyyy-MM-dd HH:mm:ss");
+    //UUID
+    private String UUID = IDUtil.getUUID();
+    //状态码 默认为200
     private int status=200;
     //接口返回的数据
     private T data;
@@ -24,6 +27,14 @@ public class ResponseBody<T> implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
     public int getStatus() {

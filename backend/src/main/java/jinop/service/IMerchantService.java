@@ -15,11 +15,11 @@ public interface IMerchantService {
 
     int queryMerchant(Map<String, Object> map);
 
-    void addMerchant(Merchant merchant);
+    void addMerchant(Map<String, Object> map);
 
     void deleteMerchant(Integer id);
 
-    void editMerchant(Merchant merchant);
+    void editMerchant(Map<String, Object> map);
 
     Map<String, Object> showMerchant(Map<String, Object> map);
 

@@ -32,8 +32,8 @@ public class MerchantServiceImpl implements IMerchantService {
     }
 
     @Override
-    public void addMerchant(Merchant merchant) {
-        merchantMapper.addMerchant(merchant);
+    public void addMerchant(Map<String, Object> map) {
+        merchantMapper.addMerchant(map);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class MerchantServiceImpl implements IMerchantService {
     }
 
     @Override
-    public void editMerchant(Merchant merchant) {
-        merchantMapper.editMerchant(merchant);
+    public void editMerchant(Map<String, Object> map) {
+        merchantMapper.editMerchant(map);
     }
 
     @Override

@@ -14,13 +14,13 @@ public interface ClientMapper {
     int queryClient(Map<String, Object> map);
 
     //添加客户信息
-    void addClient(Client client);
+    void addClient(Map<String, Object> map);
 
     //删除客户信息
     void deleteClient(Integer id);
 
     //编辑客户信息
-    void editClient(Client client);
+    void editClient(Map<String, Object> map);
 
     //模糊查询客户信息和显示所有客户信息
     List<Client> showClient(Map<String, Object> map);

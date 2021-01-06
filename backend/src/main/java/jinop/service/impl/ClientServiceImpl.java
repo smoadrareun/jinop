@@ -32,8 +32,8 @@ public class ClientServiceImpl implements IClientService {
     }
 
     @Override
-    public void addClient(Client client) {
-        clientMapper.addClient(client);
+    public void addClient(Map<String, Object> map) {
+        clientMapper.addClient(map);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class ClientServiceImpl implements IClientService {
     }
 
     @Override
-    public void editClient(Client client) {
-        clientMapper.editClient(client);
+    public void editClient(Map<String, Object> map) {
+        clientMapper.editClient(map);
     }
 
     @Override

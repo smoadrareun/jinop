@@ -37,7 +37,7 @@
         </where>
     </select>
 
-    <insert id="addCommodity" parameterType="commodity" >
+    <insert id="addCommodity" parameterType="map" >
         INSERT INTO  cominfo(
             name,price,num,sales,info,pic,kind,spec
         )VALUES (
@@ -63,31 +63,31 @@
     DELETE FROM  cominfo where id=#{id}
     </delete>
 
-    <update id="editCommodity" parameterType="commodity">
+    <update id="editCommodity" parameterType="map">
         UPDATE cominfo
         <set>
-            <if test="name !=null and name !='' ">
+            <if test="name !=null and name !=''">
                 name=#{name},
             </if>
-            <if test="price !=null and price !='' ">
+            <if test="price !=null and price !=''">
                 price=#{price},
             </if>
-            <if test="num !=null and num !='' ">
+            <if test="num !=null and num !=''">
                 num=#{num},
             </if>
-            <if test="sales !=null and sales !='' ">
+            <if test="sales !=null and sales !=''">
                 sales=#{sales},
             </if>
-            <if test="info !=null and info !='' ">
+            <if test="info !=null and info !=''">
                 info=#{info},
             </if>
-            <if test="pic !=null and pic !='' ">
+            <if test="pic !=null and pic !=''">
                 pic=#{pic},
             </if>
-            <if test="kind !=null and kind !='' ">
+            <if test="kind !=null and kind !=''">
                 kind=#{kind},
             </if>
-            <if test="spec !=null and spec !='' ">
+            <if test="spec !=null and spec !=''">
                 spec=#{spec}
             </if>
         </set>

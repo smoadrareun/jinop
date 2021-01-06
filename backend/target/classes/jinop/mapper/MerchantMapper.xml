@@ -44,7 +44,7 @@
         SELECT COUNT(1) FROM merinfo WHERE username=#{username} AND password=#{password} AND level=#{level}
     </select>
 
-    <insert id="addMerchant" parameterType="merchant" >
+    <insert id="addMerchant" parameterType="map" >
         INSERT INTO  merinfo(
             username,password,money,name,num,address,level,location,price
         )VALUES (
@@ -71,34 +71,34 @@
         DELETE FROM merinfo where id=#{id}
     </delete>
 
-    <update id="editMerchant" parameterType="merchant">
+    <update id="editMerchant" parameterType="map">
         UPDATE merinfo
         <set>
-            <if test="username !=null ">
+            <if test="username !=null and username !=''">
                 username=#{username},
             </if>
-            <if test="password !=null and password !='' ">
+            <if test="password !=null and password !=''">
                 password=#{password},
             </if>
-            <if test="money !=null and money !='' ">
+            <if test="money !=null and money !=''">
                 money=#{money},
             </if>
-            <if test="name !=null and name !='' ">
+            <if test="name !=null and name !=''">
                 name=#{name},
             </if>
-            <if test="num !=null and num !='' ">
+            <if test="num !=null and num !=''">
                 num=#{num},
             </if>
-            <if test="address !=null and address !='' ">
+            <if test="address !=null and address !=''">
                 address=#{address},
             </if>
-            <if test="level !=null and level !='' ">
+            <if test="level !=null and level !=''">
                 level=#{level},
             </if>
-            <if test="location !=null and location !='' ">
+            <if test="location !=null and location !=''">
                 location=#{location}
             </if>
-            <if test="price !=null and price !='' ">
+            <if test="price !=null and price !=''">
                 price=#{price}
             </if>
         </set>

@@ -13,11 +13,11 @@ public interface ICommodityService {
 
     int checkCommodity(Map<String, Object> map);
 
-    void addCommodity(Commodity commodity);
+    void addCommodity(Map<String, Object> map);
 
     void deleteCommodity(Integer id);
 
-    void editCommodity(Commodity commodity);
+    void editCommodity(Map<String, Object> map);
 
     Map<String, Object> showCommodity(Map<String, Object> map);
 

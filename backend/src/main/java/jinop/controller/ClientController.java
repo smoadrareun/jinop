@@ -26,21 +26,22 @@ public class ClientController {
         int flag = clientService.queryClient(map);
         if (flag==1){
             Map<String, Object> resultMap = clientService.findClient(map);
-            return new AssembleResponseMsg().success(resultMap);
+            return new AssembleResponseMsg().success(resultMap,200,"客户登录成功！");
         }else{
             return new AssembleResponseMsg().failure(201,"error","用户名或密码错误！");
         }
     }
 
     @RequestMapping(value = "/addclient", produces = "application/json;charset=utf-8")
-    public ResponseBody addClient(@RequestBody Client client) {
+    public ResponseBody addClient(@RequestBody Map<String, Object> map) {
         try {
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("username", client.getUsername());
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("username", map.get("username"));
             int flag = clientService.checkClient(map);
             if (flag==0){
-                clientService.addClient(client);
-                return new AssembleResponseMsg().success("OK");
+                clientService.addClient(map);
+                Map<String, Object> resultMap = clientService.findClient(map);
+                return new AssembleResponseMsg().success(resultMap,200,"添加客户成功！");
             }else{
                 return new AssembleResponseMsg().failure(203,"error","用户名已存在！");
             }
@@ -53,12 +54,12 @@ public class ClientController {
     @RequestMapping(value = "/deleteclient/{id}", produces = "application/json;charset=utf-8")
     public ResponseBody deleteClient(@PathVariable("id") Integer id) {
         try {
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("id",id);
-            int flag = clientService.checkClient(map);
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id",id);
+            int flag = clientService.checkClient(checkMap);
             if (flag==1){
                 clientService.deleteClient(id);
-                return new AssembleResponseMsg().success("OK");
+                return new AssembleResponseMsg().success("OK",200,"删除客户成功！");
             }else{
                 return new AssembleResponseMsg().failure(202,"error","该客户不存在！");
             }
@@ -69,10 +70,18 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/editclient", produces = "application/json;charset=utf-8")
-    public ResponseBody editClient(@RequestBody Client client) {
+    public ResponseBody editClient(@RequestBody Map<String, Object> map) {
         try {
-            clientService.editClient(client);
-            return new AssembleResponseMsg().success("OK");
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id", map.get("id"));
+            int flag = clientService.checkClient(map);
+            if (flag==1){
+                clientService.editClient(map);
+                Map<String, Object> resultMap = clientService.findClient(map);
+                return new AssembleResponseMsg().success(resultMap,200,"修改客户成功！");
+            }else{
+                return new AssembleResponseMsg().failure(202,"error","该客户不存在！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "修改客户失败！");
@@ -83,7 +92,7 @@ public class ClientController {
     public ResponseBody showClient(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = clientService.showClient(map);
-            return new AssembleResponseMsg().success(resultMap);
+            return new AssembleResponseMsg().success(resultMap,200,"模糊查询客户成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询客户失败！");
@@ -94,7 +103,7 @@ public class ClientController {
     public ResponseBody findClient(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = clientService.findClient(map);
-            return new AssembleResponseMsg().success(resultMap);
+            return new AssembleResponseMsg().success(resultMap,200,"精确查询客户成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询客户失败！");

@@ -1,5 +1,6 @@
 package jinop.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import jinop.common.AssembleResponseMsg;
 import jinop.model.Commodity;
 import jinop.model.ResponseBody;
@@ -22,10 +23,18 @@ public class CommodityController {
     private ICommodityService commodityService;
 
     @RequestMapping(value = "/addcommodity", produces = "application/json;charset=utf-8")
-    public ResponseBody addCommodity(@RequestBody Commodity commodity) {
+    public ResponseBody addCommodity(@RequestBody Map<String, Object> map) {
         try {
-            commodityService.addCommodity(commodity);
-            return new AssembleResponseMsg().success("OK");
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("name", map.get("name"));
+            int flag = commodityService.checkCommodity(checkMap);
+            if (flag==0){
+                commodityService.addCommodity(map);
+                Map<String, Object> resultMap = commodityService.findCommodity(map);
+                return new AssembleResponseMsg().success(resultMap,200,"添加商品成功！");
+            }else{
+                return new AssembleResponseMsg().failure(203,"error","商品名已存在！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "添加商品失败！");
@@ -35,12 +44,12 @@ public class CommodityController {
     @RequestMapping(value = "/deletecommodity/{id}", produces = "application/json;charset=utf-8")
     public ResponseBody deleteCommodity(@PathVariable("id") Integer id) {
         try {
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("id",id);
-            int flag = commodityService.checkCommodity(map);
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id",id);
+            int flag = commodityService.checkCommodity(checkMap);
             if (flag==1){
                 commodityService.deleteCommodity(id);
-                return new AssembleResponseMsg().success("OK");
+                return new AssembleResponseMsg().success("OK",200,"删除商品成功！");
             }else{
                 return new AssembleResponseMsg().failure(202,"error","该商品不存在！");
             }
@@ -51,10 +60,18 @@ public class CommodityController {
     }
 
     @RequestMapping(value = "/editcommodity", produces = "application/json;charset=utf-8")
-    public ResponseBody editCommodity(@RequestBody Commodity commodity) {
+    public ResponseBody editCommodity(@RequestBody Map<String, Object> map) {
         try {
-            commodityService.editCommodity(commodity);
-            return new AssembleResponseMsg().success("OK");
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id", map.get("id"));
+            int flag = commodityService.checkCommodity(checkMap);
+            if (flag==1){
+                commodityService.editCommodity(map);
+                Map<String, Object> resultMap = commodityService.findCommodity(map);
+                return new AssembleResponseMsg().success(resultMap,200,"修改商品成功！");
+            }else{
+                return new AssembleResponseMsg().failure(202,"error","该商品不存在！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "修改商品失败！");
@@ -65,7 +82,9 @@ public class CommodityController {
     public ResponseBody showCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.showCommodity(map);
-            return new AssembleResponseMsg().success(resultMap);
+            JSONObject specj = JSONObject.parseObject((String) map.get("spec"));
+            resultMap.put("specj",specj);
+            return new AssembleResponseMsg().success(resultMap,200,"模糊查询商品成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询商品失败！");
@@ -76,7 +95,9 @@ public class CommodityController {
     public ResponseBody findCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.findCommodity(map);
-            return new AssembleResponseMsg().success(resultMap);
+            JSONObject specj = JSONObject.parseObject((String) map.get("spec"));
+            resultMap.put("specj",specj);
+            return new AssembleResponseMsg().success(resultMap,200,"精确查询商品成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询商品失败！");

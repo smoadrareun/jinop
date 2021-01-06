@@ -1,5 +1,7 @@
 package jinop.model;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -16,7 +18,7 @@ public class Commodity implements Serializable {
     private String info;         //商品描述信息
     private String pic;          //商品图片
     private String kind;         //商品分类
-    private String spec;          //商品父级id
+    private String spec;         //商品规格
 
     public Integer getId() {
         return id;

@@ -27,8 +27,8 @@ public class TransactionServiceImpl implements ITransactionService {
     }
 
     @Override
-    public void addTransaction(Transaction transaction) {
-        transactionMapper.addTransaction(transaction);
+    public void addTransaction(Map<String, Object> map) {
+        transactionMapper.addTransaction(map);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class TransactionServiceImpl implements ITransactionService {
     }
 
     @Override
-    public void editTransaction(Transaction transaction) {
-        transactionMapper.editTransaction(transaction);
+    public void editTransaction(Map<String, Object> map) {
+        transactionMapper.editTransaction(map);
     }
 
     @Override

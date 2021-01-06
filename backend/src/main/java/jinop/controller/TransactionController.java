@@ -22,10 +22,11 @@ public class TransactionController {
     private ITransactionService transactionService;
 
     @RequestMapping(value = "/addtransaction", produces = "application/json;charset=utf-8")
-    public ResponseBody addTransaction(@RequestBody Transaction transaction) {
+    public ResponseBody addTransaction(@RequestBody Map<String, Object> map) {
         try {
-            transactionService.addTransaction(transaction);
-            return new AssembleResponseMsg().success("OK");
+            transactionService.addTransaction(map);
+            Map<String, Object> resultMap = transactionService.findTransaction(map);
+            return new AssembleResponseMsg().success(resultMap,200,"添加交易信息成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "添加交易信息失败！");
@@ -35,12 +36,12 @@ public class TransactionController {
     @RequestMapping(value = "/deletetransaction/{id}", produces = "application/json;charset=utf-8")
     public ResponseBody deleteTransaction(@PathVariable("id") Integer id) {
         try {
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("id",id);
-            int flag = transactionService.checkTransaction(map);
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id",id);
+            int flag = transactionService.checkTransaction(checkMap);
             if (flag==1){
                 transactionService.deleteTransaction(id);
-                return new AssembleResponseMsg().success("OK");
+                return new AssembleResponseMsg().success("OK",200,"删除交易信息成功！");
             }else{
                 return new AssembleResponseMsg().failure(202,"error","该交易信息不存在！");
             }
@@ -51,10 +52,18 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/edittransaction", produces = "application/json;charset=utf-8")
-    public ResponseBody editTransaction(@RequestBody Transaction transaction) {
+    public ResponseBody editTransaction(@RequestBody Map<String, Object> map) {
         try {
-            transactionService.editTransaction(transaction);
-            return new AssembleResponseMsg().success("OK");
+            Map<String,Object> checkMap = new HashMap<String, Object>();
+            checkMap.put("id", map.get("id"));
+            int flag = transactionService.checkTransaction(checkMap);
+            if (flag==1){
+                transactionService.editTransaction(map);
+                Map<String, Object> resultMap = transactionService.findTransaction(map);
+                return new AssembleResponseMsg().success(resultMap,200,"修改交易信息成功！");
+            }else{
+                return new AssembleResponseMsg().failure(202,"error","该信息不存在！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "修改交易信息失败！");
@@ -65,7 +74,7 @@ public class TransactionController {
     public ResponseBody showTransaction(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = transactionService.showTransaction(map);
-            return new AssembleResponseMsg().success(resultMap);
+            return new AssembleResponseMsg().success(resultMap,200,"模糊查询交易信息成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询交易信息失败！");
@@ -76,7 +85,7 @@ public class TransactionController {
     public ResponseBody findTransaction(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = transactionService.findTransaction(map);
-            return new AssembleResponseMsg().success(resultMap);
+            return new AssembleResponseMsg().success(resultMap,200,"精确查询交易信息成功！");
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询交易信息失败！");

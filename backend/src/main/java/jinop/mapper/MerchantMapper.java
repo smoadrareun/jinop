@@ -13,13 +13,13 @@ public interface MerchantMapper {
     int queryMerchant(Map<String, Object> map);
 
     //添加商户信息
-    void addMerchant(Merchant merchant);
+    void addMerchant(Map<String, Object> map);
 
     //删除商户信息
     void deleteMerchant(Integer id);
 
     //编辑商户信息
-    void editMerchant(Merchant merchant);
+    void editMerchant(Map<String, Object> map);
 
     //模糊查询商户信息和显示所有商户信息
     List<Merchant> showMerchant(Map<String, Object> map);

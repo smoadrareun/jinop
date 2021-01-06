@@ -13,11 +13,11 @@ public interface ITransactionService {
 
     int checkTransaction(Map<String, Object> map);
 
-    void addTransaction(Transaction transaction);
+    void addTransaction(Map<String, Object> map);
 
     void deleteTransaction(Integer id);
 
-    void editTransaction(Transaction transaction);
+    void editTransaction(Map<String, Object> map);
 
     Map<String, Object> showTransaction(Map<String, Object> map);
 

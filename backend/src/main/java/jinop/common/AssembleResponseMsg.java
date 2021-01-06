@@ -16,10 +16,13 @@ public class AssembleResponseMsg {
      * @return model.ResponseBody
      **/
 
-    public <T> ResponseBody success(T data){
+    public <T> ResponseBody success(T data,int status,String message){
         ResponseBody<T> resp=new ResponseBody<T>();
+        resp.setStatus(status);
         resp.setData(data);
         InfoMsg info=new InfoMsg();
+        info.setCode(String.valueOf(status));
+        info.setMessage(message);
         resp.setInfo(info);
         return resp;
     }

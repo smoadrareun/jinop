@@ -10,13 +10,13 @@ public interface CommodityMapper {
     int checkCommodity(Map<String, Object> map);
 
     //添加商品信息
-    void addCommodity(Commodity commodity);
+    void addCommodity(Map<String, Object> map);
 
     //删除商品信息
     void deleteCommodity(Integer id);
 
     //编辑商品信息
-    void editCommodity(Commodity commodity);
+    void editCommodity(Map<String, Object> map);
 
     //模糊查询商品信息和显示所有商品信息
     List<Commodity> showCommodity(Map<String, Object> map);

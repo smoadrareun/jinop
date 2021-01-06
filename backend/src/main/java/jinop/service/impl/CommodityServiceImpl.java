@@ -27,8 +27,8 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void addCommodity(Commodity commodity) {
-        commodityMapper.addCommodity(commodity);
+    public void addCommodity(Map<String, Object> map) {
+        commodityMapper.addCommodity(map);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void editCommodity(Commodity commodity) {
-        commodityMapper.editCommodity(commodity);
+    public void editCommodity(Map<String, Object> map) {
+        commodityMapper.editCommodity(map);
     }
 
     @Override

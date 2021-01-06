@@ -44,7 +44,7 @@
         select count(1) from cliinfo where username=#{username} and password=#{password}
     </select>
 
-    <insert id="addClient" parameterType="client" >
+    <insert id="addClient" parameterType="map" >
         INSERT INTO  cliinfo(
             username,password,money,name,num,address,paypass,viplevel,location
         )VALUES (
@@ -71,34 +71,34 @@
         DELETE FROM  cliinfo where id=#{id}
     </delete>
 
-    <update id="editClient" parameterType="client">
+    <update id="editClient" parameterType="map">
         UPDATE cliinfo
         <set>
-            <if test="username !=null ">
+            <if test="username !=null and username !=''">
                 username=#{username},
             </if>
-            <if test="password !=null and password !='' ">
+            <if test="password !=null and password !=''">
                 password=#{password},
             </if>
-            <if test="money !=null and money !='' ">
+            <if test="money !=null and money !=''">
                 money=#{money},
             </if>
-            <if test="name !=null and name !='' ">
+            <if test="name !=null and name !=''">
                 name=#{name},
             </if>
-            <if test="num !=null and num !='' ">
+            <if test="num !=null and num !=''">
                 num=#{num},
             </if>
-            <if test="address !=null and address !='' ">
+            <if test="address !=null and address !=''">
                 address=#{address},
             </if>
-            <if test="paypass !=null and paypass !='' ">
+            <if test="paypass !=null and paypass !=''">
                 paypass=#{paypass},
             </if>
-            <if test="viplevel !=null and viplevel !='' ">
+            <if test="viplevel !=null and viplevel !=''">
                 viplevel=#{viplevel},
             </if>
-            <if test="location !=null and location !='' ">
+            <if test="location !=null and location !=''">
                 location=#{location}
             </if>
         </set>
