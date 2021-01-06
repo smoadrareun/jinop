@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jinop.mapper.CommodityMapper">
+    <!--因为在sqlMapConfig.xml中配置了别名，所以直接写commodity就可以-->
+    <select id="checkCommodity" parameterType="map" resultType="int">
+        SELECT count(1) FROM cominfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="price!=null and price!=''">
+                AND price=#{price}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="sales!=null and sales!=''">
+                AND sales=#{sales}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="pic!=null and pic!=''">
+                AND pic=#{pic}
+            </if>
+            <if test="kind!=null and kind!=''">
+                AND kind=#{kind}
+            </if>
+            <if test="spec!=null and spec!=''">
+                AND spec=#{spec}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addCommodity" parameterType="commodity" >
+        INSERT INTO  cominfo(
+            name,price,num,sales,info,pic,kind,spec
+        )VALUES (
+                    #{name},
+                    #{price},
+                    #{num},
+                    #{sales},
+                    #{info},
+                    #{pic},
+                    <choose>
+                        <when test="kind != null and kind !=''">
+                            #{kind},
+                        </when>
+                        <otherwise>
+                            'def',
+                        </otherwise>
+                    </choose>
+                    #{spec}
+                )
+    </insert>
+
+    <delete id="deleteCommodity" parameterType="int">
+    DELETE FROM  cominfo where id=#{id}
+    </delete>
+
+    <update id="editCommodity" parameterType="commodity">
+        UPDATE cominfo
+        <set>
+            <if test="name !=null and name !='' ">
+                name=#{name},
+            </if>
+            <if test="price !=null and price !='' ">
+                price=#{price},
+            </if>
+            <if test="num !=null and num !='' ">
+                num=#{num},
+            </if>
+            <if test="sales !=null and sales !='' ">
+                sales=#{sales},
+            </if>
+            <if test="info !=null and info !='' ">
+                info=#{info},
+            </if>
+            <if test="pic !=null and pic !='' ">
+                pic=#{pic},
+            </if>
+            <if test="kind !=null and kind !='' ">
+                kind=#{kind},
+            </if>
+            <if test="spec !=null and spec !='' ">
+                spec=#{spec}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="showCommodity" parameterType="map" resultType="commodity">
+        SELECT * FROM cominfo
+        <where>
+            <if test="id!=null and id!=''">
+                id LIKE CONCAT('%',#{id},'%')
+            </if>
+            <if test="name!=null and name!=''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="price!=null and price!=''">
+                AND price LIKE CONCAT('%',#{price},'%')
+            </if>
+            <if test="num!=null and num!=''">
+                AND num LIKE CONCAT('%',#{num},'%')
+            </if>
+            <if test="sales!=null and sales!=''">
+                AND sales LIKE CONCAT('%',#{sales},'%')
+            </if>
+            <if test="info!=null and info!=''">
+                AND info LIKE CONCAT('%',#{info},'%')
+            </if>
+            <if test="pic!=null and pic!=''">
+                AND pic LIKE CONCAT('%',#{pic},'%')
+            </if>
+            <if test="kind!=null and kind!=''">
+                AND kind LIKE CONCAT('%',#{kind},'%')
+            </if>
+            <if test="spec!=null and spec!=''">
+                AND spec LIKE CONCAT('%',#{spec},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findCommodity" parameterType="map" resultType="commodity">
+        SELECT * FROM cominfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="price!=null and price!=''">
+                AND price=#{price}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="sales!=null and sales!=''">
+                AND sales=#{sales}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="pic!=null and pic!=''">
+                AND pic=#{pic}
+            </if>
+            <if test="kind!=null and kind!=''">
+                AND kind=#{kind}
+            </if>
+            <if test="spec!=null and spec!=''">
+                AND spec=#{spec}
+            </if>
+        </where>
+    </select>
+
+</mapper>

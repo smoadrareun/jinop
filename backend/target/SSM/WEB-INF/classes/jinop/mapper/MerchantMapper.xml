@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jinop.mapper.MerchantMapper">
+    <!--因为在sqlMapConfig.xml中配置了别名，所以直接写merchant就可以-->
+    <select id="checkMerchant" parameterType="map" resultType="int">
+        SELECT count(1) FROM merinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="username!=null and username!=''">
+                AND username=#{username}
+            </if>
+            <if test="password!=null and password!=''">
+                AND password=#{password}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="address!=null and address!=''">
+                AND address=#{address}
+            </if>
+            <if test="level!=null and level!=''">
+                AND level=#{level}
+            </if>
+            <if test="location!=null and location!=''">
+                AND location=#{location}
+            </if>
+            <if test="price!=null and price!=''">
+                AND price=#{price}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryMerchant" parameterType="map" resultType="int">
+        SELECT COUNT(1) FROM merinfo WHERE username=#{username} AND password=#{password} AND level=#{level}
+    </select>
+
+    <insert id="addMerchant" parameterType="merchant" >
+        INSERT INTO  merinfo(
+            username,password,money,name,num,address,level,location,price
+        )VALUES (
+                    #{username},
+                    #{password},
+                    #{money},
+                    #{name},
+                    #{num},
+                    #{address},
+                    <choose>
+                        <when test="level != null and level !=''">
+                            #{level},
+                        </when>
+                        <otherwise>
+                            1,
+                        </otherwise>
+                    </choose>
+                    #{location},
+                    #{price}
+                )
+    </insert>
+
+    <delete id="deleteMerchant" parameterType="int">
+        DELETE FROM merinfo where id=#{id}
+    </delete>
+
+    <update id="editMerchant" parameterType="merchant">
+        UPDATE merinfo
+        <set>
+            <if test="username !=null ">
+                username=#{username},
+            </if>
+            <if test="password !=null and password !='' ">
+                password=#{password},
+            </if>
+            <if test="money !=null and money !='' ">
+                money=#{money},
+            </if>
+            <if test="name !=null and name !='' ">
+                name=#{name},
+            </if>
+            <if test="num !=null and num !='' ">
+                num=#{num},
+            </if>
+            <if test="address !=null and address !='' ">
+                address=#{address},
+            </if>
+            <if test="level !=null and level !='' ">
+                level=#{level},
+            </if>
+            <if test="location !=null and location !='' ">
+                location=#{location}
+            </if>
+            <if test="price !=null and price !='' ">
+                price=#{price}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="showMerchant" parameterType="map" resultType="merchant">
+        SELECT * FROM merinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id LIKE CONCAT('%',#{id},'%')
+            </if>
+            <if test="username!=null and username!=''">
+                AND username LIKE CONCAT('%',#{username},'%')
+            </if>
+            <if test="password!=null and password!=''">
+                AND password LIKE CONCAT('%',#{password},'%')
+            </if>
+            <if test="money!=null and money!=''">
+                AND money LIKE CONCAT('%',#{money},'%')
+            </if>
+            <if test="name!=null and name!=''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="num!=null and num!=''">
+                AND num LIKE CONCAT('%',#{num},'%')
+            </if>
+            <if test="address!=null and address!=''">
+                AND address LIKE CONCAT('%',#{address},'%')
+            </if>
+            <if test="level!=null and level!=''">
+                AND level LIKE CONCAT('%',#{level},'%')
+            </if>
+            <if test="location!=null and location!=''">
+                AND location LIKE CONCAT('%',#{location},'%')
+            </if>
+            <if test="price!=null and price!=''">
+                AND price LIKE CONCAT('%',#{price},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findMerchant" parameterType="map" resultType="merchant">
+        SELECT * FROM merinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="username!=null and username!=''">
+                AND username=#{username}
+            </if>
+            <if test="password!=null and password!=''">
+                AND password=#{password}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="address!=null and address!=''">
+                AND address=#{address}
+            </if>
+            <if test="level!=null and level!=''">
+                AND level=#{level}
+            </if>
+            <if test="location!=null and location!=''">
+                AND location=#{location}
+            </if>
+            <if test="price!=null and price!=''">
+                AND price=#{price}
+            </if>
+        </where>
+    </select>
+
+</mapper>

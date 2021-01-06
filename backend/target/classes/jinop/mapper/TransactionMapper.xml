@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jinop.mapper.TransactionMapper">
+    <!--因为在sqlMapConfig.xml中配置了别名，所以直接写transaction就可以-->
+    <select id="checkTransaction" parameterType="map" resultType="int">
+        SELECT count(1) FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid=#{cliid}
+            </if>
+            <if test="merid!=null and merid!=''">
+                AND merid=#{merid}
+            </if>
+            <if test="date!=null and date!=''">
+                AND date=#{date}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark=#{remark}
+            </if>
+            <if test="demoney!=null and demoney!=''">
+                AND demoney=#{demoney}
+            </if>
+            <if test="status!=null and status!=''">
+                AND status=#{status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addTransaction" parameterType="transaction" >
+        INSERT INTO  traninfo(
+            cliid,merid,date,money,info,remark,demoney,status
+        )VALUES (
+                    #{cliid},
+                    #{merid},
+                    #{date},
+                    #{money},
+                    #{info},
+                    #{remark},
+                    <choose>
+                        <when test="demoney != null and demoney !=''">
+                            #{demoney},
+                        </when>
+                        <otherwise>
+                            -1.00,
+                        </otherwise>
+                    </choose>
+                    <choose>
+                        <when test="status != null and status !=''">
+                            #{status}
+                        </when>
+                        <otherwise>
+                            1
+                        </otherwise>
+                    </choose>
+                )
+    </insert>
+
+    <delete id="deleteTransaction" parameterType="int">
+        DELETE FROM  traninfo where id=#{id}
+    </delete>
+
+    <update id="editTransaction" parameterType="transaction">
+        UPDATE traninfo
+        <set>
+            <if test="cliid !=null and cliid !='' ">
+                cliid=#{cliid},
+            </if>
+            <if test="price !=null and price !='' ">
+                merid=#{merid},
+            </if>
+            <if test="date !=null and date !='' ">
+                date=#{date},
+            </if>
+            <if test="money !=null and money !='' ">
+                money=#{money},
+            </if>
+            <if test="info !=null and info !='' ">
+                info=#{info},
+            </if>
+            <if test="remark !=null and remark !='' ">
+                remark=#{remark},
+            </if>
+            <if test="demoney !=null and demoney !='' ">
+                demoney=#{demoney},
+            </if>
+            <if test="status !=null and status !='' ">
+                status=#{status}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="showTransaction" parameterType="map" resultType="transaction">
+        SELECT * FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id LIKE CONCAT('%',#{id},'%')
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid LIKE CONCAT('%',#{cliid},'%')
+            </if>
+            <if test="merid!=null and merid!=''">
+                AND merid LIKE CONCAT('%',#{merid},'%')
+            </if>
+            <if test="date!=null and date!=''">
+                AND date LIKE CONCAT('%',#{date},'%')
+            </if>
+            <if test="money!=null and money!=''">
+                AND money LIKE CONCAT('%',#{money},'%')
+            </if>
+            <if test="info!=null and info!=''">
+                AND info LIKE CONCAT('%',#{info},'%')
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark LIKE CONCAT('%',#{remark},'%')
+            </if>
+            <if test="demoney!=null and demoney!=''">
+                AND demoney LIKE CONCAT('%',#{demoney},'%')
+            </if>
+            <if test="status!=null and status!=''">
+                AND status LIKE CONCAT('%',#{status},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findTransaction" parameterType="map" resultType="transaction">
+        SELECT * FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid=#{cliid}
+            </if>
+            <if test="merid!=null and merid!=''">
+                AND merid=#{merid}
+            </if>
+            <if test="date!=null and date!=''">
+                AND date=#{date}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark=#{remark}
+            </if>
+            <if test="demoney!=null and demoney!=''">
+                AND demoney=#{demoney}
+            </if>
+            <if test="status!=null and status!=''">
+                AND status=#{status}
+            </if>
+        </where>
+    </select>
+
+</mapper>
