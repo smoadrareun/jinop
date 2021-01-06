@@ -39,7 +39,7 @@ public class MerchantController {
             map.put("username", merchant.getUsername());
             map.put("level", merchant.getLevel());
             int flag = merchantService.checkMerchant(map);
-            if (flag==1){
+            if (flag==0){
                 merchantService.addMerchant(merchant);
                 return new AssembleResponseMsg().success("OK");
             }else{

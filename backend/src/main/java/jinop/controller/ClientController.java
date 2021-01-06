@@ -38,7 +38,7 @@ public class ClientController {
             Map<String,Object> map = new HashMap<String, Object>();
             map.put("username", client.getUsername());
             int flag = clientService.checkClient(map);
-            if (flag==1){
+            if (flag==0){
                 clientService.addClient(client);
                 return new AssembleResponseMsg().success("OK");
             }else{
