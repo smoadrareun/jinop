@@ -45,8 +45,9 @@
 
     <insert id="addTransaction" parameterType="map">
         INSERT INTO  traninfo(
-            cliid,merid,cliname,mername,date,money,info,remark,demoney,status
+            id,cliid,merid,cliname,mername,date,money,info,remark,demoney,status
         )VALUES (
+                    #{id},
                     #{cliid},
                     #{merid},
                     #{cliname},
@@ -74,7 +75,7 @@
                 )
     </insert>
 
-    <delete id="deleteTransaction" parameterType="int">
+    <delete id="deleteTransaction" parameterType="string">
         DELETE FROM traninfo where id=#{id}
     </delete>
 

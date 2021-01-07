@@ -34,7 +34,7 @@ public class CommodityServiceImpl implements ICommodityService {
     }
 
     @Override
-    public void deleteCommodity(Integer id) {
+    public void deleteCommodity(String id) {
         commodityMapper.deleteCommodity(id);
     }
 

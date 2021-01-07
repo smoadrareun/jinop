@@ -13,7 +13,7 @@ public interface CommodityMapper {
     void addCommodity(Map<String, Object> map);
 
     //删除商品信息
-    void deleteCommodity(Integer id);
+    void deleteCommodity(String id);
 
     //编辑商品信息
     void editCommodity(Map<String, Object> map);

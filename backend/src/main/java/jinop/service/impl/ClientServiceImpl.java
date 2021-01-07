@@ -37,7 +37,7 @@ public class ClientServiceImpl implements IClientService {
     }
 
     @Override
-    public void deleteClient(Integer id) {
+    public void deleteClient(String id) {
         clientMapper.deleteClient(id);
     }
 

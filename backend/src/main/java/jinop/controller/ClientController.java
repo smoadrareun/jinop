@@ -1,7 +1,7 @@
 package jinop.controller;
 
 import jinop.common.AssembleResponseMsg;
-import jinop.model.Client;
+import jinop.common.IDUtil;
 import jinop.model.ResponseBody;
 import jinop.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,7 @@ public class ClientController {
             checkMap.put("username", map.get("username"));
             int flag = clientService.checkClient(checkMap);
             if (flag==0){
+                map.put("id", IDUtil.getID());
                 clientService.addClient(map);
                 Map<String, Object> resultMap = clientService.findClient(map);
                 return new AssembleResponseMsg().success(resultMap,200,"添加客户成功！");
@@ -52,7 +53,7 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/deleteclient/{id}", produces = "application/json;charset=utf-8")
-    public ResponseBody deleteClient(@PathVariable("id") Integer id) {
+    public ResponseBody deleteClient(@PathVariable("id") String id) {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("id",id);

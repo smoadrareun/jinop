@@ -17,7 +17,7 @@ public interface ClientMapper {
     void addClient(Map<String, Object> map);
 
     //删除客户信息
-    void deleteClient(Integer id);
+    void deleteClient(String id);
 
     //编辑客户信息
     void editClient(Map<String, Object> map);

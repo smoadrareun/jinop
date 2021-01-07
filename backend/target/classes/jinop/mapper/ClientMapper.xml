@@ -46,8 +46,9 @@
 
     <insert id="addClient" parameterType="map" >
         INSERT INTO  cliinfo(
-            username,password,money,name,num,address,paypass,viplevel,location
+            id,username,password,money,name,num,address,paypass,viplevel,location
         )VALUES (
+                    #{id},
                     #{username},
                     #{password},
                     #{money},
@@ -67,7 +68,7 @@
                 )
     </insert>
 
-    <delete id="deleteClient" parameterType="int">
+    <delete id="deleteClient" parameterType="string">
         DELETE FROM  cliinfo where id=#{id}
     </delete>
 

@@ -13,9 +13,9 @@ import java.util.Date;
  * @Description TODO  交易信息类
  **/
 public class Transaction implements Serializable {
-    private Integer id;           //交易信息唯一标识符
-    private Integer cliid;        //客户id
-    private Integer merid;        //商户id
+    private String id;           //交易信息唯一标识符
+    private String cliid;        //客户id
+    private String merid;        //商户id
     private String cliname;       //客户名称
     private String mername;       //商户名称
     private String date;          //交易日期
@@ -25,23 +25,27 @@ public class Transaction implements Serializable {
     private BigDecimal demoney;   //配送费
     private Integer status;       //订单状态
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public Integer getCliid() {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCliid() {
         return cliid;
     }
 
-    public void setCliid(Integer cliid) {
+    public void setCliid(String cliid) {
         this.cliid = cliid;
     }
 
-    public Integer getMerid() {
+    public String getMerid() {
         return merid;
     }
 
-    public void setMerid(Integer merid) {
+    public void setMerid(String merid) {
         this.merid = merid;
     }
 

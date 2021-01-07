@@ -15,7 +15,7 @@ public interface ITransactionService {
 
     void addTransaction(Map<String, Object> map);
 
-    void deleteTransaction(Integer id);
+    void deleteTransaction(String id);
 
     void editTransaction(Map<String, Object> map);
 

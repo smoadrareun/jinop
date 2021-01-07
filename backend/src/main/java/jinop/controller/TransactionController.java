@@ -2,6 +2,7 @@ package jinop.controller;
 
 import jinop.common.AssembleResponseMsg;
 import jinop.common.DateUtil;
+import jinop.common.IDUtil;
 import jinop.model.ResponseBody;
 import jinop.model.Transaction;
 import jinop.service.ITransactionService;
@@ -25,6 +26,7 @@ public class TransactionController {
     @RequestMapping(value = "/addtransaction", produces = "application/json;charset=utf-8")
     public ResponseBody addTransaction(@RequestBody Map<String, Object> map) {
         try {
+            map.put("id", IDUtil.getID());
             if(map.get("date")==null||map.get("date")=="")
                 map.put("date",DateUtil.getCurrentDateStr("yyyy-MM-dd HH:mm:ss"));
             transactionService.addTransaction(map);
@@ -37,7 +39,7 @@ public class TransactionController {
     }
 
     @RequestMapping(value = "/deletetransaction/{id}", produces = "application/json;charset=utf-8")
-    public ResponseBody deleteTransaction(@PathVariable("id") Integer id) {
+    public ResponseBody deleteTransaction(@PathVariable("id") String id) {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("id",id);
@@ -65,7 +67,7 @@ public class TransactionController {
                 Map<String, Object> resultMap = transactionService.findTransaction(map);
                 return new AssembleResponseMsg().success(resultMap,200,"修改交易信息成功！");
             }else{
-                return new AssembleResponseMsg().failure(202,"error","该信息不存在！");
+                return new AssembleResponseMsg().failure(202,"error","该交易信息不存在！");
             }
         } catch (Exception e) {
             e.printStackTrace();

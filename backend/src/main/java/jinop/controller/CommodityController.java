@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import jinop.common.AssembleResponseMsg;
+import jinop.common.IDUtil;
 import jinop.model.Commodity;
 import jinop.model.ResponseBody;
 import jinop.service.ICommodityService;
@@ -31,6 +32,7 @@ public class CommodityController {
             checkMap.put("name", map.get("name"));
             int flag = commodityService.checkCommodity(checkMap);
             if (flag==0){
+                map.put("id", IDUtil.getID());
                 commodityService.addCommodity(map);
                 Map<String, Object> resultMap = commodityService.findCommodity(map);
                 return new AssembleResponseMsg().success(resultMap,200,"添加商品成功！");
@@ -44,7 +46,7 @@ public class CommodityController {
     }
 
     @RequestMapping(value = "/deletecommodity/{id}", produces = "application/json;charset=utf-8")
-    public ResponseBody deleteCommodity(@PathVariable("id") Integer id) {
+    public ResponseBody deleteCommodity(@PathVariable("id") String id) {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("id",id);

@@ -37,7 +37,7 @@ public class MerchantServiceImpl implements IMerchantService {
     }
 
     @Override
-    public void deleteMerchant(Integer id) {
+    public void deleteMerchant(String id) {
         merchantMapper.deleteMerchant(id);
     }
 

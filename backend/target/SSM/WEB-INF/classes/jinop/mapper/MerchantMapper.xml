@@ -46,8 +46,9 @@
 
     <insert id="addMerchant" parameterType="map" >
         INSERT INTO  merinfo(
-            username,password,money,name,num,address,level,location,price
+            id,username,password,money,name,num,address,level,location,price
         )VALUES (
+                    #{id},
                     #{username},
                     #{password},
                     #{money},
@@ -67,7 +68,7 @@
                 )
     </insert>
 
-    <delete id="deleteMerchant" parameterType="int">
+    <delete id="deleteMerchant" parameterType="string">
         DELETE FROM merinfo where id=#{id}
     </delete>
 

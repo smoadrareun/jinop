@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @Description TODO  商品类
  **/
 public class Commodity implements Serializable {
-    private Integer id;          //商品唯一标识符
+    private String id;          //商品唯一标识符
     private String name;         //商品名称
     private BigDecimal price;    //商品价格
     private String num;          //商品剩余数量
@@ -21,8 +21,12 @@ public class Commodity implements Serializable {
     private String kind;         //商品分类
     private JSONArray spec;         //商品规格
 
-    public Integer getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

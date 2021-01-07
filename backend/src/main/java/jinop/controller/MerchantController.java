@@ -1,6 +1,7 @@
 package jinop.controller;
 
 import jinop.common.AssembleResponseMsg;
+import jinop.common.IDUtil;
 import jinop.model.Merchant;
 import jinop.model.ResponseBody;
 import jinop.service.IMerchantService;
@@ -40,6 +41,7 @@ public class MerchantController {
             checkMap.put("level", map.get("level"));
             int flag = merchantService.checkMerchant(checkMap);
             if (flag==0){
+                map.put("id", IDUtil.getID());
                 merchantService.addMerchant(map);
                 Map<String, Object> resultMap = merchantService.findMerchant(map);
                 return new AssembleResponseMsg().success(resultMap,200,"添加商户成功！");
@@ -53,7 +55,7 @@ public class MerchantController {
     }
 
     @RequestMapping(value = "/deletemerchant/{id}", produces = "application/json;charset=utf-8")
-    public ResponseBody deleteMerchant(@PathVariable("id") Integer id) {
+    public ResponseBody deleteMerchant(@PathVariable("id") String id) {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("id",id);

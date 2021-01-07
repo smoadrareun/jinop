@@ -32,7 +32,7 @@ public class TransactionServiceImpl implements ITransactionService {
     }
 
     @Override
-    public void deleteTransaction(Integer id) {
+    public void deleteTransaction(String id) {
         transactionMapper.deleteTransaction(id);
     }
 

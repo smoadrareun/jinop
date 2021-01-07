@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * @Description TODO  客户类
  **/
 public class Client implements Serializable {
-    private Integer id;
+    private String id;
     private String username;
     private String password;
     private BigDecimal money;
@@ -19,8 +19,12 @@ public class Client implements Serializable {
     private Integer viplevel;
     private String location;
 
-    public Integer getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {

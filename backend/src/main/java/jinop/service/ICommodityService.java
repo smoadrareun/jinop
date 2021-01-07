@@ -15,7 +15,7 @@ public interface ICommodityService {
 
     void addCommodity(Map<String, Object> map);
 
-    void deleteCommodity(Integer id);
+    void deleteCommodity(String id);
 
     void editCommodity(Map<String, Object> map);
 

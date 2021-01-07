@@ -16,7 +16,7 @@ public interface MerchantMapper {
     void addMerchant(Map<String, Object> map);
 
     //删除商户信息
-    void deleteMerchant(Integer id);
+    void deleteMerchant(String id);
 
     //编辑商户信息
     void editMerchant(Map<String, Object> map);

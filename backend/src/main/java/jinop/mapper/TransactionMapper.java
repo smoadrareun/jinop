@@ -13,7 +13,7 @@ public interface TransactionMapper {
     void addTransaction(Map<String, Object> map);
 
     //删除交易信息
-    void deleteTransaction(Integer id);
+    void deleteTransaction(String id);
 
     //编辑交易信息
     void editTransaction(Map<String, Object> map);

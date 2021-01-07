@@ -17,7 +17,7 @@ public interface IClientService {
 
     void addClient(Map<String, Object> map);
 
-    void deleteClient(Integer id);
+    void deleteClient(String id);
 
     void editClient(Map<String, Object> map);
 

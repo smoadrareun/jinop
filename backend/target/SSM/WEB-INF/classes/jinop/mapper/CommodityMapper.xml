@@ -39,8 +39,9 @@
 
     <insert id="addCommodity" parameterType="map" >
         INSERT INTO  cominfo(
-            name,price,num,sales,info,pic,kind,spec
+            id,name,price,num,sales,info,pic,kind,spec
         )VALUES (
+                    #{id},
                     #{name},
                     #{price},
                     #{num},
@@ -66,7 +67,7 @@
                 )
     </insert>
 
-    <delete id="deleteCommodity" parameterType="int">
+    <delete id="deleteCommodity" parameterType="string">
     DELETE FROM  cominfo where id=#{id}
     </delete>
 

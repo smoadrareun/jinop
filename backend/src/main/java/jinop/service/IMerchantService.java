@@ -17,7 +17,7 @@ public interface IMerchantService {
 
     void addMerchant(Map<String, Object> map);
 
-    void deleteMerchant(Integer id);
+    void deleteMerchant(String id);
 
     void editMerchant(Map<String, Object> map);
 
