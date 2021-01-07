@@ -88,10 +88,10 @@
                 merid=#{merid},
             </if>
             <if test="cliname!=null and cliname!=''">
-                cliname=#{cliname}
+                cliname=#{cliname},
             </if>
             <if test="mername!=null and mername!=''">
-                mername=#{mername}
+                mername=#{mername},
             </if>
             <if test="date !=null and date !=''">
                 date=#{date},
@@ -128,10 +128,10 @@
                 AND merid LIKE CONCAT('%',#{merid},'%')
             </if>
             <if test="cliname!=null and cliname!=''">
-                AND cliname=#{cliname}
+                AND cliname LIKE CONCAT('%',#{cliname},'%')
             </if>
             <if test="mername!=null and mername!=''">
-                AND mername=#{mername}
+                AND mername LIKE CONCAT('%',#{mername},'%')
             </if>
             <if test="date!=null and date!=''">
                 AND date LIKE CONCAT('%',#{date},'%')
