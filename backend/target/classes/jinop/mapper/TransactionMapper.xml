@@ -16,6 +16,12 @@
             <if test="merid!=null and merid!=''">
                 AND merid=#{merid}
             </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname=#{cliname}
+            </if>
+            <if test="mername!=null and mername!=''">
+                AND mername=#{mername}
+            </if>
             <if test="date!=null and date!=''">
                 AND date=#{date}
             </if>
@@ -39,10 +45,12 @@
 
     <insert id="addTransaction" parameterType="map">
         INSERT INTO  traninfo(
-            cliid,merid,date,money,info,remark,demoney,status
+            cliid,merid,cliname,mername,date,money,info,remark,demoney,status
         )VALUES (
                     #{cliid},
                     #{merid},
+                    #{cliname},
+                    #{mername},
                     #{date},
                     #{money},
                     #{info},
@@ -67,7 +75,7 @@
     </insert>
 
     <delete id="deleteTransaction" parameterType="int">
-        DELETE FROM  traninfo where id=#{id}
+        DELETE FROM traninfo where id=#{id}
     </delete>
 
     <update id="editTransaction" parameterType="map">
@@ -76,8 +84,14 @@
             <if test="cliid !=null and cliid !=''">
                 cliid=#{cliid},
             </if>
-            <if test="price !=null and price !=''">
+            <if test="merid !=null and merid !=''">
                 merid=#{merid},
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                cliname=#{cliname}
+            </if>
+            <if test="mername!=null and mername!=''">
+                mername=#{mername}
             </if>
             <if test="date !=null and date !=''">
                 date=#{date},
@@ -113,6 +127,12 @@
             <if test="merid!=null and merid!=''">
                 AND merid LIKE CONCAT('%',#{merid},'%')
             </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname=#{cliname}
+            </if>
+            <if test="mername!=null and mername!=''">
+                AND mername=#{mername}
+            </if>
             <if test="date!=null and date!=''">
                 AND date LIKE CONCAT('%',#{date},'%')
             </if>
@@ -145,6 +165,12 @@
             </if>
             <if test="merid!=null and merid!=''">
                 AND merid=#{merid}
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname=#{cliname}
+            </if>
+            <if test="mername!=null and mername!=''">
+                AND mername=#{mername}
             </if>
             <if test="date!=null and date!=''">
                 AND date=#{date}
