@@ -16,6 +16,8 @@ public class Transaction implements Serializable {
     private Integer id;           //交易信息唯一标识符
     private Integer cliid;        //客户id
     private Integer merid;        //商户id
+    private String cliname;       //客户名称
+    private String mername;       //商户名称
     private String date;          //交易日期
     private BigDecimal money;     //交易金额
     private JSONArray info;       //交易详情
@@ -41,6 +43,22 @@ public class Transaction implements Serializable {
 
     public void setMerid(Integer merid) {
         this.merid = merid;
+    }
+
+    public String getCliname() {
+        return cliname;
+    }
+
+    public void setCliname(String cliname) {
+        this.cliname = cliname;
+    }
+
+    public String getMername() {
+        return mername;
+    }
+
+    public void setMername(String mername) {
+        this.mername = mername;
     }
 
     public String getDate() {
