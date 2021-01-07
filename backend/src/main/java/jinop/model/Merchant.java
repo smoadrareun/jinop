@@ -13,7 +13,7 @@ public class Merchant implements Serializable {
     private String password;
     private BigDecimal money;
     private String name;
-    private Integer num;
+    private Long num;
     private String address;
     private Integer level;
     private String location;
@@ -49,11 +49,11 @@ public class Merchant implements Serializable {
 
     public void setName(String name) { this.name = name; }
 
-    public Integer getNum() {
+    public Long getNum() {
         return num;
     }
 
-    public void setNum(Integer num) { this.num = num; }
+    public void setNum(Long num) { this.num = num; }
 
     public String getAddress() {
         return address;

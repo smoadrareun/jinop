@@ -1,5 +1,7 @@
 package jinop.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import jinop.common.AssembleResponseMsg;
 import jinop.model.Commodity;
@@ -82,8 +84,6 @@ public class CommodityController {
     public ResponseBody showCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.showCommodity(map);
-            JSONObject specj = JSONObject.parseObject((String) map.get("spec"));
-            resultMap.put("specj",specj);
             return new AssembleResponseMsg().success(resultMap,200,"模糊查询商品成功！");
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,8 +95,6 @@ public class CommodityController {
     public ResponseBody findCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.findCommodity(map);
-            JSONObject specj = JSONObject.parseObject((String) map.get("spec"));
-            resultMap.put("specj",specj);
             return new AssembleResponseMsg().success(resultMap,200,"精确查询商品成功！");
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,5 +1,9 @@
 package jinop.model;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import jinop.common.DateUtil;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,9 +16,9 @@ public class Transaction implements Serializable {
     private Integer id;           //交易信息唯一标识符
     private Integer cliid;        //客户id
     private Integer merid;        //商户id
-    private Date date;            //交易日期
+    private String date;          //交易日期
     private BigDecimal money;     //交易金额
-    private String info;          //交易详情
+    private JSONArray info;       //交易详情
     private String remark;        //订单备注
     private BigDecimal demoney;   //配送费
     private Integer status;       //订单状态
@@ -39,11 +43,11 @@ public class Transaction implements Serializable {
         this.merid = merid;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -55,12 +59,12 @@ public class Transaction implements Serializable {
         this.money = money;
     }
 
-    public String getInfo() {
+    public JSONArray getInfo() {
         return info;
     }
 
     public void setInfo(String info) {
-        this.info = info;
+        this.info = JSON.parseArray(info);
     }
 
     public String getRemark() {

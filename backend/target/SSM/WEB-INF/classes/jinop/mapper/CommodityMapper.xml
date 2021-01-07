@@ -44,7 +44,14 @@
                     #{name},
                     #{price},
                     #{num},
-                    #{sales},
+                    <choose>
+                        <when test="sales != null and sales !=''">
+                            #{sales},
+                        </when>
+                        <otherwise>
+                            0,
+                        </otherwise>
+                    </choose>
                     #{info},
                     #{pic},
                     <choose>

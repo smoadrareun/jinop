@@ -1,6 +1,7 @@
 package jinop.controller;
 
 import jinop.common.AssembleResponseMsg;
+import jinop.common.DateUtil;
 import jinop.model.ResponseBody;
 import jinop.model.Transaction;
 import jinop.service.ITransactionService;
@@ -24,6 +25,8 @@ public class TransactionController {
     @RequestMapping(value = "/addtransaction", produces = "application/json;charset=utf-8")
     public ResponseBody addTransaction(@RequestBody Map<String, Object> map) {
         try {
+            if(map.get("date")==null||map.get("date")=="")
+                map.put("date",DateUtil.getCurrentDateStr("yyyy-MM-dd HH:mm:ss"));
             transactionService.addTransaction(map);
             Map<String, Object> resultMap = transactionService.findTransaction(map);
             return new AssembleResponseMsg().success(resultMap,200,"添加交易信息成功！");
