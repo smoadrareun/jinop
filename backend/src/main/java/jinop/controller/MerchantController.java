@@ -93,7 +93,12 @@ public class MerchantController {
     public ResponseBody showMerchant(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = merchantService.showMerchant(map);
-            return new AssembleResponseMsg().success(resultMap,200,"模糊查询商户成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有商户成功！");
+            }else{
+                return new AssembleResponseMsg().success(resultMap,200,"模糊查询商户成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询商户失败！");
@@ -104,7 +109,12 @@ public class MerchantController {
     public ResponseBody findMerchant(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = merchantService.findMerchant(map);
-            return new AssembleResponseMsg().success(resultMap,200,"精确查询商户成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有商户成功！");
+            }else{
+                return new AssembleResponseMsg().success(resultMap,200,"精确查询商户成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询商户失败！");

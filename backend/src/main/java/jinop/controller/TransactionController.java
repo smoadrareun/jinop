@@ -77,7 +77,12 @@ public class TransactionController {
     public ResponseBody showTransaction(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = transactionService.showTransaction(map);
-            return new AssembleResponseMsg().success(resultMap,200,"模糊查询交易信息成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有交易信息成功！");
+            }else{
+                return new AssembleResponseMsg().success(resultMap,200,"模糊查询交易信息成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询交易信息失败！");
@@ -88,7 +93,12 @@ public class TransactionController {
     public ResponseBody findTransaction(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = transactionService.findTransaction(map);
-            return new AssembleResponseMsg().success(resultMap,200,"精确查询交易信息成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有交易信息成功！");
+            }else{
+                return new AssembleResponseMsg().success(resultMap,200,"精确查询交易信息成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询交易信息失败！");

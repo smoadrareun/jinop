@@ -84,7 +84,12 @@ public class CommodityController {
     public ResponseBody showCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.showCommodity(map);
-            return new AssembleResponseMsg().success(resultMap,200,"模糊查询商品成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有商品成功！");
+            }else {
+                return new AssembleResponseMsg().success(resultMap, 200, "模糊查询商品成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "模糊查询商品失败！");
@@ -95,7 +100,12 @@ public class CommodityController {
     public ResponseBody findCommodity(@RequestBody Map<String,Object> map){
         try {
             Map<String, Object> resultMap = commodityService.findCommodity(map);
-            return new AssembleResponseMsg().success(resultMap,200,"精确查询商品成功！");
+            if(map.isEmpty()==true)
+            {
+                return new AssembleResponseMsg().success(resultMap,200,"显示所有商品成功！");
+            }else{
+                return new AssembleResponseMsg().success(resultMap,200,"精确查询商品成功！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new AssembleResponseMsg().failure(201, "error", "精确查询商品失败！");
