@@ -37,7 +37,7 @@ public class ClientController {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("username", map.get("username"));
-            int flag = clientService.checkClient(map);
+            int flag = clientService.checkClient(checkMap);
             if (flag==0){
                 clientService.addClient(map);
                 Map<String, Object> resultMap = clientService.findClient(map);
@@ -74,7 +74,7 @@ public class ClientController {
         try {
             Map<String,Object> checkMap = new HashMap<String, Object>();
             checkMap.put("id", map.get("id"));
-            int flag = clientService.checkClient(map);
+            int flag = clientService.checkClient(checkMap);
             if (flag==1){
                 clientService.editClient(map);
                 Map<String, Object> resultMap = clientService.findClient(map);
