@@ -3,13 +3,17 @@ package jinop.controller;
 import jinop.common.AssembleResponseMsg;
 import jinop.common.DateUtil;
 import jinop.common.IDUtil;
+import jinop.mapper.ClientMapper;
+import jinop.mapper.MerchantMapper;
+import jinop.model.Client;
+import jinop.model.Merchant;
 import jinop.model.ResponseBody;
-import jinop.model.Transaction;
 import jinop.service.ITransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +26,10 @@ import java.util.Map;
 public class TransactionController {
     @Autowired
     private ITransactionService transactionService;
+    @Autowired
+    private ClientMapper clientMapper;
+    @Autowired
+    private MerchantMapper merchantMapper;
 
     @RequestMapping(value = "/addtransaction", produces = "application/json;charset=utf-8")
     public ResponseBody addTransaction(@RequestBody Map<String, Object> map) {
@@ -29,6 +37,21 @@ public class TransactionController {
             map.put("id", IDUtil.getID());
             if(map.get("date")==null||map.get("date")=="")
                 map.put("date",DateUtil.getCurrentDateStr("yyyy-MM-dd HH:mm:ss"));
+            Map<String,Object> newMap = new HashMap<String, Object>();
+            if(map.get("cliid")!=null&&map.get("cliid")!="") {
+                newMap.put("id",map.get("cliid"));
+                List<Client> clientList = clientMapper.findClient(newMap);
+                for (Client client : clientList) {
+                    map.put("cliname",client.getName());
+                }
+            }
+            if(map.get("merid")!=null&&map.get("merid")!="") {
+                newMap.put("id",map.get("merid"));
+                List<Merchant> merchantList = merchantMapper.findMerchant(newMap);
+                for (Merchant merchant : merchantList) {
+                    map.put("mername",merchant.getName());
+                }
+            }
             transactionService.addTransaction(map);
             Map<String, Object> resultMap = transactionService.findTransaction(map);
             return new AssembleResponseMsg().success(resultMap,200,"添加交易信息成功！");
