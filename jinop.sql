@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 02/07/2021 16:55:49
+ Date: 02/07/2021 20:49:15
 */
 
 SET NAMES utf8mb4;
@@ -30,9 +30,9 @@ CREATE TABLE `cliinfo`  (
   `num` int(0) NULL DEFAULT NULL,
   `addinfo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `paypass` int(0) NULL DEFAULT NULL,
-  `viplevel` tinyint(1) NULL DEFAULT 0,
-  `long` decimal(20, 6) NULL DEFAULT NULL,
-  `lat` decimal(20, 6) NULL DEFAULT NULL,
+  `level` tinyint(1) NULL DEFAULT 0,
+  `longi` decimal(20, 6) NULL DEFAULT NULL,
+  `lati` decimal(20, 6) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
@@ -68,7 +68,7 @@ DROP TABLE IF EXISTS `merinfo`;
 CREATE TABLE `merinfo`  (
   `id` int(0) NOT NULL,
   `username` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `passwd` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `num` int(0) NULL DEFAULT NULL,
   `addinfo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -93,8 +93,8 @@ CREATE TABLE `retinfo`  (
   `disc` decimal(3, 1) NULL DEFAULT 10.0,
   `dist` decimal(5, 2) NULL DEFAULT NULL,
   `price` decimal(10, 2) NULL DEFAULT NULL,
-  `long` decimal(20, 6) NULL DEFAULT NULL,
-  `lat` decimal(20, 6) NULL DEFAULT NULL,
+  `longi` decimal(20, 6) NULL DEFAULT NULL,
+  `lati` decimal(20, 6) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
