@@ -11,21 +11,21 @@ import java.math.BigDecimal;
  * @Description TODO  商品类
  **/
 public class Commodity implements Serializable {
-    private int id;          //商品唯一标识符
+    private Integer id;          //商品唯一标识符
     private String name;         //商品名称
     private BigDecimal price;    //商品价格
     private String num;          //商品剩余数量
-    private int sales;       //商品销量
+    private Integer sales;       //商品销量
     private String info;         //商品描述信息
     private String pic;          //商品图片
     private String kind;         //商品分类
     private JSONArray spec;         //商品规格
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,11 +53,11 @@ public class Commodity implements Serializable {
         this.num = num;
     }
 
-    public int getSales() {
+    public Integer getSales() {
         return sales;
     }
 
-    public void setSales(int sales) {
+    public void setSales(Integer sales) {
         this.sales = sales;
     }
 

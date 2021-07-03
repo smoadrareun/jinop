@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * @Description TODO  店铺类
  **/
 public class Retailer implements Serializable {
-    private int id;          //店铺唯一标识符
+    private Integer id;          //店铺唯一标识符
     private BigDecimal money;    //店铺余额
     private String name;         //店铺名称
     private Long num;          //店铺电话
@@ -19,11 +19,11 @@ public class Retailer implements Serializable {
     private BigDecimal longi;    //经度度数
     private BigDecimal lati;    //纬度度数
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

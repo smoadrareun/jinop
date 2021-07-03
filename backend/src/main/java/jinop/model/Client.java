@@ -8,23 +8,23 @@ import java.math.BigDecimal;
  * @Description TODO  客户类
  **/
 public class Client implements Serializable {
-    private int id;		//客户唯一标识符
+    private Integer id;		//客户唯一标识符
     private String username;	//客户账号名称
     private String passwd;		//客户账号密码
     private BigDecimal money;	//客户余额
     private String name;	//客户姓名
     private Long num;	//客户电话
     private String addinfo;		//客户地址
-    private int paypass;	//客户支付密码
+    private Integer paypass;	//客户支付密码
     private Boolean level;	//客户等级
     private BigDecimal longi;	//经度度数
     private BigDecimal lati;		//纬度度数
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -76,11 +76,11 @@ public class Client implements Serializable {
     	this.addinfo = addinfo; 
     }
 
-    public int getPaypass() {
+    public Integer getPaypass() {
         return paypass;
     }
 
-    public void getPaypass(int paypass) {
+    public void getPaypass(Integer paypass) {
     	this.paypass = paypass; 
     }
 

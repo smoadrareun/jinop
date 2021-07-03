@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @Description TODO  商户类
  **/
 public class Merchant implements Serializable {
-    private int id;		//商户唯一标识符
+    private Integer id;		//商户唯一标识符
     private String username;	//商户账号名称
     private String passwd;	//商户账号密码
     private String name;	//商户姓名
@@ -15,11 +15,11 @@ public class Merchant implements Serializable {
     private String addinfo;		//商户地址
     private Boolean level;		//商户等级
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

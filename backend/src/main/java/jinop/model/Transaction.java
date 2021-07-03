@@ -14,8 +14,8 @@ import java.util.Date;
  **/
 public class Transaction implements Serializable {
     private String id;           //交易信息唯一标识符
-    private int cliid;        //客户id
-    private int retid;        //商户id
+    private Integer cliid;        //客户id
+    private Integer retid;        //商户id
     private String cliname;       //客户名称
     private String retname;       //商户名称
     private String date;          //交易日期
@@ -32,19 +32,19 @@ public class Transaction implements Serializable {
         this.id = id;
     }
 
-    public int getCliid() {
+    public Integer getCliid() {
         return cliid;
     }
 
-    public void setCliid(int cliid) {
+    public void setCliid(Integer cliid) {
         this.cliid = cliid;
     }
 
-    public int getRetid() {
+    public Integer getRetid() {
         return retid;
     }
 
-    public void setRetid(int retid) {
+    public void setRetid(Integer retid) {
         this.retid = retid;
     }
 
