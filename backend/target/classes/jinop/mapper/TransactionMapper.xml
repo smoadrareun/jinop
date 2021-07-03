@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jinop.mapper.TransactionMapper">
+    <!--因为在sqlMapConfig.xml中配置了别名，所以直接写transaction就可以-->
+    <select id="checkTransaction" parameterType="map" resultType="int">
+        SELECT count(1) FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid=#{cliid}
+            </if>
+            <if test="retid!=null and retid!=''">
+                AND retid=#{retid}
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname=#{cliname}
+            </if>
+            <if test="retname!=null and retname!=''">
+                AND retname=#{retname}
+            </if>
+            <if test="date!=null and date!=''">
+                AND date=#{date}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark=#{remark}
+            </if>
+            <if test="status!=null and status!=''">
+                AND status=#{status}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addTransaction" parameterType="map">
+        INSERT INTO  traninfo(
+            id,cliid,retid,cliname,retname,date,money,info,remark,demoney,status
+        )VALUES (
+                    #{id},
+                    #{cliid},
+                    #{retid},
+                    #{cliname},
+                    #{retname},
+                    #{date},
+                    <choose>
+                        <when test="money != null and money !=''">
+                            #{money},
+                        </when>
+                        <otherwise>
+                            0.00,
+                        </otherwise>
+                    </choose>
+                    #{info},
+                    #{remark},
+                    <choose>
+                        <when test="status != null and status !=''">
+                            #{status}
+                        </when>
+                        <otherwise>
+                            true
+                        </otherwise>
+                    </choose>
+                )
+    </insert>
+
+    <delete id="deleteTransaction" parameterType="string">
+        DELETE FROM traninfo where id=#{id}
+    </delete>
+
+    <update id="editTransaction" parameterType="map">
+        UPDATE traninfo
+        <set>
+            <if test="cliid !=null and cliid !=''">
+                cliid=#{cliid},
+            </if>
+            <if test="retid !=null and retid !=''">
+                retid=#{retid},
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                cliname=#{cliname},
+            </if>
+            <if test="retname!=null and retname!=''">
+                retname=#{retname},
+            </if>
+            <if test="date !=null and date !=''">
+                date=#{date},
+            </if>
+            <if test="money !=null and money !=''">
+                money=#{money},
+            </if>
+            <if test="info !=null and info !=''">
+                info=#{info},
+            </if>
+            <if test="remark !=null and remark !=''">
+                remark=#{remark},
+            </if>
+            <if test="status !=null and status !=''">
+                status=#{status}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="showTransaction" parameterType="map" resultType="transaction">
+        SELECT * FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id LIKE CONCAT('%',#{id},'%')
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid LIKE CONCAT('%',#{cliid},'%')
+            </if>
+            <if test="retid!=null and retid!=''">
+                AND retid LIKE CONCAT('%',#{retid},'%')
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname LIKE CONCAT('%',#{cliname},'%')
+            </if>
+            <if test="retname!=null and retname!=''">
+                AND retname LIKE CONCAT('%',#{retname},'%')
+            </if>
+            <if test="date!=null and date!=''">
+                AND date LIKE CONCAT('%',#{date},'%')
+            </if>
+            <if test="money!=null and money!=''">
+                AND money LIKE CONCAT('%',#{money},'%')
+            </if>
+            <if test="info!=null and info!=''">
+                AND info LIKE CONCAT('%',#{info},'%')
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark LIKE CONCAT('%',#{remark},'%')
+            </if>
+            <if test="status!=null and status!=''">
+                AND status LIKE CONCAT('%',#{status},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findTransaction" parameterType="map" resultType="transaction">
+        SELECT * FROM traninfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="cliid!=null and cliid!=''">
+                AND cliid=#{cliid}
+            </if>
+            <if test="retid!=null and retid!=''">
+                AND retid=#{retid}
+            </if>
+            <if test="cliname!=null and cliname!=''">
+                AND cliname=#{cliname}
+            </if>
+            <if test="retname!=null and retname!=''">
+                AND retname=#{retname}
+            </if>
+            <if test="date!=null and date!=''">
+                AND date=#{date}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="info!=null and info!=''">
+                AND info=#{info}
+            </if>
+            <if test="remark!=null and remark!=''">
+                AND remark=#{remark}
+            </if>
+            <if test="status!=null and status!=''">
+                AND status=#{status}
+            </if>
+        </where>
+    </select>
+
+</mapper>

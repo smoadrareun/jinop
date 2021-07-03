@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jinop.mapper.ClientMapper">
+    <!--因为在sqlMapConfig.xml中配置了别名，所以直接写client就可以-->
+    <select id="checkClient" parameterType="map" resultType="int">
+        select count(1) from cliinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="username!=null and username!=''">
+                AND username=#{username}
+            </if>
+            <if test="passwd!=null and passwd!=''">
+                AND passwd=#{passwd}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="addinfo!=null and addinfo!=''">
+                AND addinfo=#{addinfo}
+            </if>
+            <if test="paypass!=null and paypass!=''">
+                AND paypass=#{paypass}
+            </if>
+            <if test="level!=null and level!=''">
+                AND level=#{level}
+            </if>
+            <if test="longi!=null and longi!=''">
+                AND longi=#{longi}
+            </if>
+            <if test="lati!=null and lati!=''">
+                AND lati=#{lati}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryClient" parameterType="map" resultType="int">
+        select count(1) from cliinfo where username=#{username} and passwd=#{passwd}
+    </select>
+
+    <insert id="addClient" parameterType="map" >
+        INSERT INTO cliinfo(
+            id,username,passwd,money,name,num,addinfo,paypass,level,longi,lati
+        )VALUES (
+                    #{id},
+                    #{username},
+                    #{passwd},
+                    <choose>
+                        <when test="money != null and money !=''">
+                            #{money},
+                        </when>
+                        <otherwise>
+                            0.00,
+                        </otherwise>
+                    </choose>
+                    #{name},
+                    #{num},
+                    #{addinfo},
+                    #{paypass},
+                    <choose>
+                        <when test="level != null and level !=''">
+                            #{level},
+                        </when>
+                        <otherwise>
+                            false,
+                        </otherwise>
+                    </choose>
+                    #{longi},
+                    #{lati}
+                )
+    </insert>
+
+    <delete id="deleteClient" parameterType="int">
+        DELETE FROM  cliinfo where id=#{id}
+    </delete>
+
+    <update id="editClient" parameterType="map">
+        UPDATE cliinfo
+        <set>
+            <if test="username !=null and username !=''">
+                username=#{username},
+            </if>
+            <if test="passwd !=null and passwd !=''">
+                passwd=#{passwd},
+            </if>
+            <if test="money !=null and money !=''">
+                money=#{money},
+            </if>
+            <if test="name !=null and name !=''">
+                name=#{name},
+            </if>
+            <if test="num !=null and num !=''">
+                num=#{num},
+            </if>
+            <if test="addinfo !=null and addinfo !=''">
+                addinfo=#{addinfo},
+            </if>
+            <if test="paypass !=null and paypass !=''">
+                paypass=#{paypass},
+            </if>
+            <if test="level !=null and level !=''">
+                level=#{level},
+            </if>
+            <if test="longi !=null and longi !=''">
+                longi=#{longi}
+            </if>
+            <if test="lati !=null and lati !=''">
+                lati=#{lati}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="showClient" parameterType="map" resultType="client">
+        SELECT * FROM cliinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id LIKE CONCAT('%',#{id},'%')
+            </if>
+            <if test="username!=null and username!=''">
+                AND username LIKE CONCAT('%',#{username},'%')
+            </if>
+            <if test="passwd!=null and passwd!=''">
+                AND passwd LIKE CONCAT('%',#{passwd},'%')
+            </if>
+            <if test="money!=null and money!=''">
+                AND money LIKE CONCAT('%',#{money},'%')
+            </if>
+            <if test="name!=null and name!=''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="num!=null and num!=''">
+                AND num LIKE CONCAT('%',#{num},'%')
+            </if>
+            <if test="addinfo!=null and addinfo!=''">
+                AND addinfo LIKE CONCAT('%',#{addinfo},'%')
+            </if>
+            <if test="paypass!=null and paypass!=''">
+                AND paypass LIKE CONCAT('%',#{paypass},'%')
+            </if>
+            <if test="level!=null and level!=''">
+                AND level LIKE CONCAT('%',#{level},'%')
+            </if>
+            <if test="longi!=null and longi!=''">
+                AND longi LIKE CONCAT('%',#{longi},'%')
+            </if>
+            <if test="lati!=null and lati!=''">
+                AND lati LIKE CONCAT('%',#{lati},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findClient" parameterType="map" resultType="client">
+        SELECT * FROM cliinfo
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+            <if test="username!=null and username!=''">
+                AND username=#{username}
+            </if>
+            <if test="passwd!=null and passwd!=''">
+                AND passwd=#{passwd}
+            </if>
+            <if test="money!=null and money!=''">
+                AND money=#{money}
+            </if>
+            <if test="name!=null and name!=''">
+                AND name=#{name}
+            </if>
+            <if test="num!=null and num!=''">
+                AND num=#{num}
+            </if>
+            <if test="addinfo!=null and addinfo!=''">
+                AND addinfo=#{addinfo}
+            </if>
+            <if test="paypass!=null and paypass!=''">
+                AND paypass=#{paypass}
+            </if>
+            <if test="level!=null and level!=''">
+                AND level=#{level}
+            </if>
+            <if test="longi!=null and longi!=''">
+                AND longi=#{longi}
+            </if>
+            <if test="lati!=null and lati!=''">
+                AND lati=#{lati}
+            </if>
+        </where>
+    </select>
+
+</mapper>
